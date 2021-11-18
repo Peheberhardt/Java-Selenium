@@ -9,7 +9,7 @@ import DSL.DslClass;
 import Pages.AdmPages;
 import Pages.LoginPage;
 
-public class Testes {
+public class Corporativo_ADM_Testes {
 	private WebDriver driver;
 	private DslClass dsl;
 	private LoginPage loginpage;
@@ -28,8 +28,14 @@ public class Testes {
 	}
 	
 	@Test
-	public void PreenhcerFormularioADM() throws InterruptedException {
-		admpage.PreencherFormularioComDadosValidos();
+	@Ignore
+	public void PreencherFormularioADM() throws InterruptedException {
+		admpage.PreencherFormularioADMComDadosValidos();
+	}
+	
+	@Test
+	public void ValidarCamposObrigatoriosADM() throws InterruptedException {
+		admpage.ValidarCamposADM();
 	}
 
 }

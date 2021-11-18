@@ -1,5 +1,6 @@
 package Pages;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,21 +22,31 @@ import DSL.DslClass;
 		uteis = new CodigosUteis();
 	}
 	
-	public void PreencherFormularioComDadosValidos() throws InterruptedException {
-		dsl.ClicarXpath("//span[text()='Cadastros']");
-		dsl.ClicarXpath("//a[text()='Administradores']");
-		dsl.ClicarXpath("//a[text()='Cadastrar']");
-		dsl.PreencherIdFormulario("nome", uteis.gerarNomes());
-		dsl.PreencherIdFormulario("cpf", uteis.gerarCPF());
-		dsl.ClicarXpath("//div[text()='Selecione o sexo']");
+	public void PreencherFormularioADMComDadosValidos() throws InterruptedException {
+		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Administradores']"));
+		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
+		dsl.Preencher(By.id("nome"), uteis.gerarNomes());
+		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
+		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(1000);
-		dsl.ClicarXpath(("//*[text()='Masculino']"));
-		dsl.PreencherIdFormulario("dataNasc", "10-05-1999");
-		dsl.PreencherIdFormulario("telefone", uteis.gerarTelefone());
-		dsl.PreencherIdFormulario("celular", uteis.gerarCelular());
-		dsl.PreencherId("email", uteis.gerarEmail());
-		dsl.PreencherId("senha", "teste123");
-		dsl.ClicarXpath("//button[text()='Cadastrar']");
-		Assert.assertEquals("Administrador cadastrado com sucesso!", dsl.AssertById("swal2-title"));
+		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
+		dsl.Preencher(By.id("dataNasc"), "10-05-1999");
+		dsl.Preencher(By.id("telefone"), uteis.gerarTelefone());
+		dsl.Preencher(By.id("celular"), uteis.gerarCelular());
+		dsl.Preencher(By.id("email"), uteis.gerarEmail());
+		dsl.Preencher(By.id("senha"), "teste123");
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Administrador cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
+	}
+	
+	public void ValidarCamposADM() {
+		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Administradores']"));
+		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
+		dsl.Clicar(By.xpath("//button[text()='OK']"));
+		
 	}
 }
