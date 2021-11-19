@@ -1,22 +1,16 @@
 package Pages;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import Codigos.CodigosUteis;
 import DSL.DslClass;
 	
-	public class AdmPages {
+	public class AdmPage {
 	
-	private WebDriver driver;
 	private DslClass dsl;
 	private CodigosUteis uteis;
 	
-	public AdmPages(WebDriver driver) {
+	public AdmPage(WebDriver driver) {
 		super();
 		dsl = new DslClass(driver);
 		uteis = new CodigosUteis();
@@ -47,6 +41,14 @@ import DSL.DslClass;
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 		dsl.Clicar(By.xpath("//button[text()='OK']"));
-		
+		Assert.assertEquals("O Campo nome deve ter no mínimo 10 caracteres", dsl.Assert(By.xpath("//div[text()='O Campo nome deve ter no mínimo 10 caracteres']")));
+		Assert.assertEquals("O CPF digitado é inválido", dsl.Assert(By.xpath("//div[text()='O CPF digitado é inválido']")));
+		Assert.assertEquals("Campo de Data de Nascimento é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de Data de Nascimento é obrigatório']")));
+		Assert.assertEquals("O campo telefone deve conter 10 caracteres", dsl.Assert(By.xpath("//div[text()='O campo telefone deve conter 10 caracteres']")));
+		Assert.assertEquals("O campo celular deve conter 11 caracteres", dsl.Assert(By.xpath("//div[text()='O campo celular deve conter 11 caracteres']")));
+		Assert.assertEquals("Digite um e-mail válido", dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
+		Assert.assertEquals("Campo de senha é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
 	}
+	
+	
 }

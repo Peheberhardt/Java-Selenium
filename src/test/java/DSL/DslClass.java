@@ -32,7 +32,6 @@ public class DslClass {
 	}
 	
 	public void Clicar(By by) {
-		
 		wait.until(ExpectedConditions.elementToBeClickable(by)).click();
 	}
 	

@@ -1,19 +1,18 @@
+package Main.Corporativo_ADM;
+
+import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import DSL.DslClass;
-import Pages.AdmPages;
+import Pages.AntecedentesPage;
 import Pages.LoginPage;
 
-public class Corporativo_ADM_Testes {
+public class Antecedentes {
+	
 	private WebDriver driver;
-	private DslClass dsl;
 	private LoginPage loginpage;
-	private AdmPages admpage;
+	private AntecedentesPage antecedentespage;
 		
 	@Before
 	public void Inicializar() throws InterruptedException {
@@ -21,21 +20,18 @@ public class Corporativo_ADM_Testes {
 		driver = new ChromeDriver();
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
-		dsl = new DslClass(driver);
 		loginpage = new LoginPage(driver);
-		admpage = new AdmPages(driver);
 		loginpage.LogarComDadosVálidos();
+		antecedentespage = new AntecedentesPage(driver);
 	}
 	
 	@Test
-	@Ignore
-	public void PreencherFormularioADM() throws InterruptedException {
-		admpage.PreencherFormularioADMComDadosValidos();
+	public void PreencherFormularioAntecedentes() {
+		antecedentespage.PreencherFormularioAntecedentes();
 	}
 	
-	@Test
-	public void ValidarCamposObrigatoriosADM() throws InterruptedException {
-		admpage.ValidarCamposADM();
+	@After
+	public void Ending() {
+		driver.quit();
 	}
-
 }

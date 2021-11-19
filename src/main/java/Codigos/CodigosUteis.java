@@ -33,10 +33,7 @@ public class CodigosUteis {
 		for (int j = 0; j < 9; j++) {
 			int posicaoAleatoria = random.nextInt(numeros.length);
 			teste.append(numeros[posicaoAleatoria]);
-		}
-
-		int teste2 = Integer.parseInt(teste.toString());
-		
+		}		
 		String n1 = teste.substring(0, 1);
 		String n2 = teste.substring(1, 2);
 		String n3 = teste.substring(2, 3);
