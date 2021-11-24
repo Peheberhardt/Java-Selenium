@@ -2,6 +2,7 @@ package Main.Corporativo_ADM;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +14,7 @@ public class Antecedentes {
 	private WebDriver driver;
 	private LoginPage loginpage;
 	private AntecedentesPage antecedentespage;
-		
+
 	@Before
 	public void Inicializar() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "C:\\autodrivers\\chromedriver.exe");
@@ -26,12 +27,17 @@ public class Antecedentes {
 	}
 	
 	@Test
-	public void PreencherFormularioAntecedentes() {
+	public void PreencherFormularioAntecedentes() throws InterruptedException {
 		antecedentespage.PreencherFormularioAntecedentes();
 	}
 	
+	@Test 
+	public void ValidarCamposAntecedentes() {
+		antecedentespage.ValidarCamposAntecedentes();
+	}
 	@After
 	public void Ending() {
 		driver.quit();
 	}
+	
 }

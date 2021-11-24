@@ -20,12 +20,35 @@ public class AntecedentesPage {
 		uteis = new CodigosUteis();
 	}
 	
-	public void PreencherFormularioAntecedentes() {
+	public void PreencherFormularioAntecedentes() throws InterruptedException {
+		String nome = uteis.gerarNomes();
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Antecedentes']"));
 		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
-		dsl.Preencher(By.id("antecedente"), uteis.gerarNomes());
+		dsl.Preencher(By.id("antecedente"), nome);
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Antecedente cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
+		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
+		if(element.equals("Antecedente cadastrado com sucesso!")) {
+			dsl.Clicar(By.xpath("//button[text()='OK']"));
+			Thread.sleep(2000);
+			dsl.Preencher(By.name("input-pesquisa"), nome);
+			Thread.sleep(3000);
+			dsl.Clicar(By.xpath("//p[text()='"+nome+"']/../..//span[@class = 'MuiIconButton-label']"));
+			dsl.Clicar(By.xpath("//button[text()='Desativar!']"));
+			Thread.sleep(3000);
+			Assert.assertEquals("Inativo", dsl.Assert(By.xpath("//b[text()='Inativo']")));
+		}
+	}
+
+	public void ValidarCamposAntecedentes() {
+		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Antecedentes']"));
+		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
+		dsl.Clicar(By.xpath("//button[text()='OK']"));
+		Assert.assertEquals("O Campo de Antecedente deve ter pelo menos 4 caracteres", dsl.Assert(By.xpath("//div[@class = 'invalid-feedback d-block']")));
+
 	}
 }

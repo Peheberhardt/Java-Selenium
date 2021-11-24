@@ -149,5 +149,17 @@ public class CodigosUteis {
 		String finall = (teste.toString()+"@testing.com");
 		return finall;
 	}
+	
+	public String gerarCoren() {
+		String[] numeros = {"1", "2", "3", "4", "5","6","7", "8", "9"};
+		
+		StringBuilder teste = new StringBuilder("");
+		Random random = new Random();
+		for(int i = 0; i < 6;i++) {
+			int posicaoAleatoria = random.nextInt(numeros.length);
+			teste.append(numeros[posicaoAleatoria]);
+		}
+		return teste.toString();
+	}
 
 }

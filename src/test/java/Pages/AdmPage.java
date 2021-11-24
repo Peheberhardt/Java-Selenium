@@ -1,26 +1,30 @@
 package Pages;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import Codigos.CodigosUteis;
 import DSL.DslClass;
-	
-	public class AdmPage {
-	
+
+public class AdmPage {
+
 	private DslClass dsl;
 	private CodigosUteis uteis;
-	
+
 	public AdmPage(WebDriver driver) {
 		super();
 		dsl = new DslClass(driver);
 		uteis = new CodigosUteis();
 	}
-	
+
 	public void PreencherFormularioADMComDadosValidos() throws InterruptedException {
+		String nome = uteis.gerarNomes();
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Administradores']"));
 		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
-		dsl.Preencher(By.id("nome"), uteis.gerarNomes());
+		dsl.Preencher(By.id("nome"), nome);
 		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
 		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(1000);
@@ -32,8 +36,19 @@ import DSL.DslClass;
 		dsl.Preencher(By.id("senha"), "teste123");
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Administrador cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
+		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
+		if(element.equals("Administrador cadastrado com sucesso!")) {
+			dsl.Clicar(By.xpath("//button[text()='OK']"));
+			Thread.sleep(2000);
+			dsl.Preencher(By.name("input-pesquisa"), nome);
+			Thread.sleep(3000);
+			dsl.Clicar(By.xpath("//td[text()='"+nome+"']/..//span[@class = 'MuiIconButton-label']"));
+			dsl.Clicar(By.xpath("//button[text()='Desativar!']"));
+			Thread.sleep(3000);
+			Assert.assertEquals("Inativo", dsl.Assert(By.xpath("//b[text()='Inativo']")));
+		}
 	}
-	
+
 	public void ValidarCamposADM() {
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Administradores']"));
@@ -41,14 +56,19 @@ import DSL.DslClass;
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 		dsl.Clicar(By.xpath("//button[text()='OK']"));
-		Assert.assertEquals("O Campo nome deve ter no mínimo 10 caracteres", dsl.Assert(By.xpath("//div[text()='O Campo nome deve ter no mínimo 10 caracteres']")));
-		Assert.assertEquals("O CPF digitado é inválido", dsl.Assert(By.xpath("//div[text()='O CPF digitado é inválido']")));
-		Assert.assertEquals("Campo de Data de Nascimento é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de Data de Nascimento é obrigatório']")));
-		Assert.assertEquals("O campo telefone deve conter 10 caracteres", dsl.Assert(By.xpath("//div[text()='O campo telefone deve conter 10 caracteres']")));
-		Assert.assertEquals("O campo celular deve conter 11 caracteres", dsl.Assert(By.xpath("//div[text()='O campo celular deve conter 11 caracteres']")));
+		Assert.assertEquals("O Campo nome deve ter no mínimo 10 caracteres",
+		dsl.Assert(By.xpath("//div[text()='O Campo nome deve ter no mínimo 10 caracteres']")));
+		Assert.assertEquals("O CPF digitado é inválido",
+		dsl.Assert(By.xpath("//div[text()='O CPF digitado é inválido']")));
+		Assert.assertEquals("Campo de Data de Nascimento é obrigatório",
+		dsl.Assert(By.xpath("//div[text()='Campo de Data de Nascimento é obrigatório']")));
+		Assert.assertEquals("O campo telefone deve conter 10 caracteres",
+		dsl.Assert(By.xpath("//div[text()='O campo telefone deve conter 10 caracteres']")));
+		Assert.assertEquals("O campo celular deve conter 11 caracteres",
+		dsl.Assert(By.xpath("//div[text()='O campo celular deve conter 11 caracteres']")));
 		Assert.assertEquals("Digite um e-mail válido", dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
-		Assert.assertEquals("Campo de senha é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
+		Assert.assertEquals("Campo de senha é obrigatório",
+		dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
 	}
-	
-	
+
 }

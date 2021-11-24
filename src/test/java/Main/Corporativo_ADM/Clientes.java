@@ -1,46 +1,43 @@
 package Main.Corporativo_ADM;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.AgentesPage;
+import Pages.ClientesPage;
 import Pages.LoginPage;
 
-public class AgentesPenitenciarios {
+public class Clientes {
+
 	private WebDriver driver;
 	private LoginPage loginpage;
-	private AgentesPage agentespage;
+	private ClientesPage clientespage;
 	
 	@Before
-	public void Inicializar() throws InterruptedException {
+	public void Inicializar() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\autodrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		agentespage = new AgentesPage(driver);
+		clientespage = new ClientesPage(driver);
 	}
 	
 	@Test
-	public void PreencherFormularioAgentes() throws InterruptedException {
-		agentespage.PreencherFormularioAgentesComDadosValidos();
+	public void PreencherFormularioClientes() throws InterruptedException {
+		clientespage.PreencherFormularioClienteComDadosValidos();
 	}
 	
 	@Test
-	public void ValidarCamposObrigatoriosAgentes() {
-		agentespage.ValidarCamposAgentes();
+	public void ValidarCamposObrigatoriosClientes() {
+		clientespage.ValidarCamposObrigatorios();
 	}
 	
 	@After
 	public void Ending() {
 		driver.quit();
 	}
-	
 }

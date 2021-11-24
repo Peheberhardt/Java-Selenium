@@ -1,21 +1,18 @@
 package Main.Corporativo_ADM;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.AgentesPage;
 import Pages.LoginPage;
+import Pages.ParceirosPage;
 
-public class AgentesPenitenciarios {
+public class Parceiros {
+
 	private WebDriver driver;
 	private LoginPage loginpage;
-	private AgentesPage agentespage;
+	private ParceirosPage  parceirospage;
 	
 	@Before
 	public void Inicializar() throws InterruptedException {
@@ -25,22 +22,12 @@ public class AgentesPenitenciarios {
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		agentespage = new AgentesPage(driver);
+		parceirospage = new ParceirosPage(driver);
 	}
 	
 	@Test
-	public void PreencherFormularioAgentes() throws InterruptedException {
-		agentespage.PreencherFormularioAgentesComDadosValidos();
-	}
-	
-	@Test
-	public void ValidarCamposObrigatoriosAgentes() {
-		agentespage.ValidarCamposAgentes();
-	}
-	
-	@After
-	public void Ending() {
-		driver.quit();
+	public void PreencherFormularioParceirosComDadosValidos() throws InterruptedException {
+		parceirospage.PreencherFormularioParceirosComDadosValidos();
 	}
 	
 }

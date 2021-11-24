@@ -36,8 +36,11 @@ public class DslClass {
 	}
 	
 	public String Assert(By by) {
-		
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
+	}
+	
+	public WebElement WaitForElement(By by) {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	
 }
