@@ -7,14 +7,14 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.ClinicasPage;
 import Pages.LoginPage;
+import Pages.OperadoresPage;
 
-public class ClinicasDigitais {
+public class Operadores {
 
-	private WebDriver driver;
 	private LoginPage loginpage;
-	private ClinicasPage clinicaspage;
+	private WebDriver driver;
+	private OperadoresPage operadorespage;
 	
 	@Before
 	public void Inicializar() throws InterruptedException {
@@ -24,21 +24,23 @@ public class ClinicasDigitais {
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		clinicaspage = new ClinicasPage(driver);
+		operadorespage = new OperadoresPage(driver);
 	}
 	
+	@Ignore
 	@Test
-	public void CadastrarClinicaDigital() throws InterruptedException {
-		clinicaspage.CadastrarClinicaDigital();
+	public void PreencherFormularioOperadoresComDadosValidos() throws InterruptedException {
+		operadorespage.PreencherFormularioOperadoresComDadosValidos();
 	}
 	
 	@Test
 	public void ValidarCamposObrigatorios() throws InterruptedException {
-		clinicaspage.ValidarCamposObrigatorios();
+		operadorespage.ValidarCamposObrigatorios();
 	}
 	
 	@After
 	public void Ending() {
 		driver.quit();
 	}
+	
 }

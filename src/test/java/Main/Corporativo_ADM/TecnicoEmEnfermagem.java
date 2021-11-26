@@ -27,7 +27,6 @@ public class TecnicoEmEnfermagem {
 		tecenfermagem = new TecEnfermagemPages(driver);
 	}
 	
-	@Ignore
 	@Test
 	public void PreencherFormularioTecEnfermagemComDadaosValidos() throws InterruptedException {
 		tecenfermagem.PreencherFormularioTecEnfermagemComDadaosValidos();

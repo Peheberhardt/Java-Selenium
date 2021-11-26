@@ -11,6 +11,7 @@ public class ClientesPage {
 
 	private DslClass dsl;
 	private CodigosUteis uteis;
+	private WebDriver driver;
 	
 	public ClientesPage(WebDriver driver) {
 		super();
@@ -52,7 +53,7 @@ public class ClientesPage {
 		}
 	}
 	
-	public void ValidarCamposObrigatorios () {
+	public void ValidarCamposObrigatorios () throws InterruptedException {
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Clientes']"));
 		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
@@ -72,5 +73,20 @@ public class ClientesPage {
 		Assert.assertEquals("O campo número deve ter pelo menos 1 caractere", dsl.Assert(By.xpath("//div[text()='O campo número deve ter pelo menos 1 caractere']")));
 		Assert.assertEquals("O campo logradouro deve conter pelo menos 3 caracteres", dsl.Assert(By.xpath("//div[text()='O campo logradouro deve conter pelo menos 3 caracteres']")));
 		Assert.assertEquals("Digite um e-mail válido", dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
+		//Validar Sexo
+		String nome = uteis.gerarNomes();
+		dsl.Preencher(By.id("nome"), nome);
+		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
+		dsl.Preencher(By.id("rg"), "123456789");
+		dsl.Preencher(By.name("nomeMae"), uteis.gerarNomes());
+		dsl.Preencher(By.id("cep"), "29160-752");
+		dsl.Clicar(By.xpath("//button[contains(., 'Consultar')]"));
+		dsl.Preencher(By.id("numero"),"12");
+		dsl.Preencher(By.id("celular"), uteis.gerarCelular());
+		dsl.Preencher(By.id("email"), uteis.gerarEmail());
+		Thread.sleep(2000);
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 	}
 }

@@ -1,5 +1,6 @@
 package Main.Corporativo_ADM;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -28,6 +29,16 @@ public class Parceiros {
 	@Test
 	public void PreencherFormularioParceirosComDadosValidos() throws InterruptedException {
 		parceirospage.PreencherFormularioParceirosComDadosValidos();
+	}
+	
+	@Test
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		parceirospage.ValidarCamposObrigatorios();
+	}
+	
+	@After
+	public void Ending() {
+		driver.quit();
 	}
 	
 }

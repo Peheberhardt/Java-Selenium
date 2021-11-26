@@ -39,7 +39,9 @@ public class ClinicasPage {
 		dsl.Clicar(By.xpath("//*[text()='15:00']"));
 		dsl.Clicar(By.id("dom"));
 		dsl.Clicar(By.xpath("//div[@class='modal-footer']//button[text()='Cadastrar']"));
-		dsl.Clicar(By.xpath("//div[@class='col-md-6 mt-3']//button[text()='Cadastrar']"));
+		Thread.sleep(600);
+		dsl.Clicar(By.id("root"));
+		dsl.Clicar(By.xpath("//button[@type='submit']"));
 		Assert.assertEquals("Clínica digital cadastrada com sucesso", dsl.Assert(By.id("swal2-title")));
 		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
 		if(element.equals("Cliente cadastrado com sucesso!")) {
@@ -52,5 +54,20 @@ public class ClinicasPage {
 			Thread.sleep(3000);
 			Assert.assertEquals("Inativo", dsl.Assert(By.xpath("//b[text()='Inativo']")));
 		}
+	}
+	
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Clínicas digitais']"));
+		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Selecione um Parceiro!", dsl.Assert(By.id("swal2-title")));
+		dsl.Clicar(By.xpath("//button[text()='OK']"));
+		Thread.sleep(300);
+		dsl.Clicar(By.xpath("//div[text()='Selecione o parceiro']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//*[text()='parceironormal']"));
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Erro ao cadastrar clínica digital", dsl.Assert(By.id("swal2-title")));
 	}
 }

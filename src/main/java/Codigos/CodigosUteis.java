@@ -161,5 +161,106 @@ public class CodigosUteis {
 		}
 		return teste.toString();
 	}
+	
+	public String gerarCNPJ() {
+		int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+		Random random = new Random();
+		StringBuilder teste = new StringBuilder("");
+
+		for (int j = 0; j < 12; j++) {
+			int posicaoAleatoria = random.nextInt(numeros.length);
+			teste.append(numeros[posicaoAleatoria]);
+		}		
+		String n1 = teste.substring(0, 1);
+		String n2 = teste.substring(1, 2);
+		String n3 = teste.substring(2, 3);
+		String n4 = teste.substring(3, 4);
+		String n5 = teste.substring(4, 5);
+		String n6 = teste.substring(5, 6);
+		String n7 = teste.substring(6, 7);
+		String n8 = teste.substring(7, 8);
+		String n9 = teste.substring(8, 9);
+		String n10 = teste.substring(9, 10);
+		String n11 = teste.substring(10, 11);
+		String n12 = teste.substring(11, 12);
+
+		//converter para int cada um deles aqui
+		
+		int n_1 = Integer.parseInt(n1);
+		int resultn1 = n_1 *5; 
+		
+		int n_2 = Integer.parseInt(n2);
+		int resultn2 = n_2 *4; 
+
+		int n_3 = Integer.parseInt(n3); 
+		int resultn3 = n_3 *3; 
+
+		int n_4 = Integer.parseInt(n4);
+		int resultn4 = n_4 *2; 
+
+		int n_5 = Integer.parseInt(n5);
+		int resultn5 = n_5 *9; 
+
+		int n_6 = Integer.parseInt(n6); 
+		int resultn6 = n_6 *8; 
+
+		int n_7 = Integer.parseInt(n7); 
+		int resultn7 = n_7 *7; 
+
+		int n_8 = Integer.parseInt(n8); 
+		int resultn8 = n_8 *6; 
+
+		int n_9 = Integer.parseInt(n9); 
+		int resultn9 = n_9 *5; 
+		
+		int n_10 = Integer.parseInt(n10); 
+		int resultn10 = n_10 *4; 
+		
+		int n_11 = Integer.parseInt(n11); 
+		int resultn11 = n_11 *3; 
+		
+		int n_12 = Integer.parseInt(n12); 
+		int resultn12 = n_12 *2; 
+		
+		int n100;
+		int n111;
+		
+		int soma = resultn1 + resultn2 + resultn3+resultn4+resultn5+resultn6+resultn7+resultn8+resultn9+resultn10+resultn11+resultn12;
+		int resto = soma % 11;
+		
+		if(resto == 0 || resto == 1) {
+			n100 = 0;
+		}else {
+			n100 = 11 - resto;
+		}
+		
+		int resultn1_1 = n_1 *6; 
+		int resultn2_2 = n_2 *5; 
+		int resultn3_3 = n_3 *4; 
+		int resultn4_4 = n_4 *3; 
+		int resultn5_5 = n_5 *2; 
+		int resultn6_6 = n_6 *9; 
+		int resultn7_7 = n_7 *8; 
+		int resultn8_8 = n_8 *7; 
+		int resultn9_9 = n_9 *6; 
+		int resultn10_10 = n_10 *5; 
+		int resultn11_11 = n_11 *4; 
+		int resultn12_12 = n_12 *3; 
+		int resultn13_13 = n100 *2; 
+				
+		int soma2 = resultn1_1 + resultn2_2+ resultn3_3+resultn4_4+resultn5_5+resultn6_6+resultn7_7+resultn8_8+resultn9_9+resultn10_10+resultn11_11+resultn12_12+resultn13_13;
+		int resto2 = soma2 % 11;
+		
+		if(resto2 == 1 || resto2 == 0) {
+			n111 = 0;
+		}else {
+			n111 = 11 - resto2;
+		}
+		
+		String cnpj = (""+n_1+""+n_2+""+n_3+""+n_4+""+n_5+""+n_6+""+n_7+""+n_8+""+n_9+""+n_10+""+n_11+""+n_12+""+n100+""+n111);
+		return cnpj;
+	}
+	
 
 }

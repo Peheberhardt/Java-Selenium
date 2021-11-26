@@ -26,7 +26,7 @@ public class Administradores {
 		admpage = new AdmPage(driver);
 		loginpage.LogarComDadosVálidos();
 	}
-	
+	@Ignore
 	@Test
 	public void PreencherFormularioADM() throws InterruptedException {
 		admpage.PreencherFormularioADMComDadosValidos();

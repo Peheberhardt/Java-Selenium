@@ -10,6 +10,8 @@ import Main.Corporativo_ADM.ClinicasDigitais;
 import Main.Corporativo_ADM.Enfermeiros;
 import Main.Corporativo_ADM.Medicos;
 import Main.Corporativo_ADM.Parceiros;
+import Main.Corporativo_ADM.Perfis;
+import Main.Corporativo_ADM.TecnicoEmEnfermagem;
 
 
 @RunWith(Suite.class)
@@ -22,7 +24,9 @@ import Main.Corporativo_ADM.Parceiros;
 	ClinicasDigitais.class,
 	Enfermeiros.class,
 	Medicos.class,
-	Parceiros.class
+	Parceiros.class,
+	TecnicoEmEnfermagem.class,
+	Perfis.class
 })
 
 public class TestesSuite {

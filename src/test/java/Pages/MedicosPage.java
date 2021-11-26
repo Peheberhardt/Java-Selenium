@@ -48,7 +48,7 @@ public class MedicosPage {
 		}
 	}
 	
-	public void ValidarCamposObrigatorios() {
+	public void ValidarCamposObrigatorios() throws InterruptedException {
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Médicos']"));
 		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
@@ -64,6 +64,20 @@ public class MedicosPage {
 		Assert.assertEquals("O campo deve conter no mínimo 2 caracteres",dsl.Assert(By.xpath("//div[text()='O campo deve conter no mínimo 2 caracteres']")));
 		Assert.assertEquals("Digite um e-mail válido", dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
 		Assert.assertEquals("Campo de senha é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
+		//Validar sexo
+		String nome = uteis.gerarNomes();
+		dsl.Preencher(By.id("nome"), nome);
+		dsl.Preencher(By.id("crm"), uteis.gerarCoren());
+		dsl.Preencher(By.id("uf"), "RS");
+		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
+		dsl.Preencher(By.id("rg"), "123456789");
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
+		dsl.Clicar(By.xpath("//div[@class = 'form-row']"));
+		dsl.Preencher(By.id("situacao"), "teste");
+		dsl.Preencher(By.id("email"), uteis.gerarEmail());
+		dsl.Preencher(By.id("senha"), "teste123");
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 		
 	}
 }

@@ -2,19 +2,18 @@ package Main.Corporativo_ADM;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.ClinicasPage;
 import Pages.LoginPage;
+import Pages.PerfisPage;
 
-public class ClinicasDigitais {
-
-	private WebDriver driver;
+public class Perfis {
+	
 	private LoginPage loginpage;
-	private ClinicasPage clinicaspage;
+	private WebDriver driver;
+	private PerfisPage perfispage;
 	
 	@Before
 	public void Inicializar() throws InterruptedException {
@@ -24,18 +23,14 @@ public class ClinicasDigitais {
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		clinicaspage = new ClinicasPage(driver);
+		perfispage = new PerfisPage(driver);
 	}
 	
 	@Test
-	public void CadastrarClinicaDigital() throws InterruptedException {
-		clinicaspage.CadastrarClinicaDigital();
+	public void CriarNovoPerfil() throws InterruptedException {
+		perfispage.CriarNovoPerfil();
 	}
 	
-	@Test
-	public void ValidarCamposObrigatorios() throws InterruptedException {
-		clinicaspage.ValidarCamposObrigatorios();
-	}
 	
 	@After
 	public void Ending() {

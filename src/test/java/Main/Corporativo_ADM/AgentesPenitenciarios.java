@@ -27,14 +27,13 @@ public class AgentesPenitenciarios {
 		loginpage.LogarComDadosVálidos();
 		agentespage = new AgentesPage(driver);
 	}
-	
 	@Test
 	public void PreencherFormularioAgentes() throws InterruptedException {
 		agentespage.PreencherFormularioAgentesComDadosValidos();
 	}
 	
 	@Test
-	public void ValidarCamposObrigatoriosAgentes() {
+	public void ValidarCamposObrigatoriosAgentes() throws InterruptedException {
 		agentespage.ValidarCamposAgentes();
 	}
 	

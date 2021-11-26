@@ -55,7 +55,7 @@ public class AgentesPage {
 		}
 	}
 	
-	public void ValidarCamposAgentes() {
+	public void ValidarCamposAgentes() throws InterruptedException {
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Agentes penitenciários']"));
 		dsl.Clicar(By.xpath("//a[text()='Cadastrar']"));
@@ -71,6 +71,40 @@ public class AgentesPage {
 		Assert.assertEquals("O campo número deve ter pelo menos 1 caractere", dsl.Assert(By.xpath("//div[text()='O campo número deve ter pelo menos 1 caractere']")));
 		Assert.assertEquals("Digite um e-mail válido", dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
 		Assert.assertEquals("Campo de senha é obrigatório", dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
+		//Validar Parceiro
+		String nome = uteis.gerarNomes();
+		dsl.Preencher(By.id("nome"), nome);
+		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
+		dsl.Preencher(By.id("rg"), "123456789");
+		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
+		dsl.Preencher(By.id("cep"), "29160-752");
+		dsl.Clicar(By.xpath("//button[contains(., 'Consultar')]"));
+		dsl.Preencher(By.id("dataNasc"), "10/05/2000");
+		dsl.Preencher(By.id("numero"), "10");
+		dsl.Preencher(By.id("email"), uteis.gerarEmail());
+		dsl.Preencher(By.id("senha"), "teste123");
+		Thread.sleep(2000);
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
+		//Validar Sexo
+		driver.navigate().refresh();
+		dsl.Preencher(By.id("nome"), nome);
+		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
+		dsl.Preencher(By.id("rg"), "123456789");
+		dsl.Preencher(By.id("dataNasc"), "10-05-2000");
+		dsl.Clicar(By.xpath("//div[text()='Selecione o parceiro']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//*[text()='parceironormal']"));
+		dsl.Preencher(By.id("cep"), "29160-752");
+		dsl.Clicar(By.xpath("//button[contains(., 'Consultar')]"));
+		dsl.Preencher(By.id("numero"), "10");
+		dsl.Preencher(By.id("email"), uteis.gerarEmail());
+		dsl.Preencher(By.id("senha"), "teste123");
+		Thread.sleep(2000);
+		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 	}
 	
 }

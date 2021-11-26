@@ -43,4 +43,15 @@ public class DslClass {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 	
+	public void ClicarJS(By by) {
+		js.executeScript("arguments[0].click();", by);
+	}
+	
+
+        
+//        WebElement el = wait.until((driver) -> {
+//            return drv.FindElement(locator);
+//        });
+
+           // js.ExecuteScript("arguments[0].click()", el);
 }

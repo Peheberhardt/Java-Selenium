@@ -27,7 +27,7 @@ public class Medicos {
 		medicospage = new MedicosPage(driver);
 	}
 	
-	
+	@Ignore
 	@Test
 	public void PreencherFormularioMedicoComDadosValidos() throws InterruptedException {
 		medicospage.PreencherFormularioMedicoComDadosValidos();
