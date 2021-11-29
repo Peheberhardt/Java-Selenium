@@ -11,7 +11,6 @@ public class ClientesPage {
 
 	private DslClass dsl;
 	private CodigosUteis uteis;
-	private WebDriver driver;
 	
 	public ClientesPage(WebDriver driver) {
 		super();

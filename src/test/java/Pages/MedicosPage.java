@@ -29,10 +29,11 @@ public class MedicosPage {
 		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(300);
 		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
+		dsl.Clicar(By.xpath("//div[@class = 'form-row']"));
 		dsl.Preencher(By.id("situacao"), "teste");
 		dsl.Preencher(By.id("email"), uteis.gerarEmail());
 		dsl.Preencher(By.id("senha"), "teste123");
-		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Médico cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
 		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();

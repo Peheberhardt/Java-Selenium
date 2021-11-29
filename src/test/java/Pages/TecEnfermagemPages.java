@@ -11,11 +11,13 @@ public class TecEnfermagemPages {
 	
 	private DslClass dsl;
 	private CodigosUteis uteis;
+	private WebDriver driver;
 	
 	public TecEnfermagemPages(WebDriver driver) {
 		super();
 		dsl = new DslClass(driver);
 		uteis = new CodigosUteis();
+		this.driver = driver;
 	}
 	
 	public void PreencherFormularioTecEnfermagemComDadaosValidos() throws InterruptedException {
@@ -68,31 +70,25 @@ public class TecEnfermagemPages {
 		Assert.assertEquals("Digite um e-mail válido",dsl.Assert(By.xpath("//div[text()='Digite um e-mail válido']")));
 		Assert.assertEquals("Campo de senha é obrigatório",dsl.Assert(By.xpath("//div[text()='Campo de senha é obrigatório']")));
 		//Validar campo parceiros
+		driver.navigate().refresh();
 		String nome = uteis.gerarNomes();
-		dsl.WaitForElement(By.id("uf")).clear();
 		dsl.Preencher(By.id("uf"), "RS");
-		dsl.WaitForElement(By.id("coren")).clear();
 		dsl.Preencher(By.id("coren"), uteis.gerarCoren());
-		dsl.WaitForElement(By.id("cpf")).clear();
 		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
-		dsl.WaitForElement(By.id("rg")).clear();
 		dsl.Preencher(By.id("rg"), "123456789");
-		dsl.WaitForElement(By.id("nome")).clear();
 		dsl.Preencher(By.id("nome"), nome);
-		dsl.WaitForElement(By.id("email")).clear();
 		dsl.Preencher(By.id("email"), uteis.gerarEmail());
-		dsl.WaitForElement(By.id("senha")).clear();
 		dsl.Preencher(By.id("senha"), "teste123");
 		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(700);
 		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
-		dsl.WaitForElement(By.id("dataNasc")).clear();
 		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//div[@class = 'form-row']"));
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 		dsl.Clicar(By.xpath("//button[text()='OK']"));
 		//Validar campo sexo
+		driver.navigate().refresh();
 		dsl.Preencher(By.id("uf"), "RS");
 		dsl.Preencher(By.id("coren"), uteis.gerarCoren());
 		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());

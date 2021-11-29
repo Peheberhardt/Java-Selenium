@@ -44,14 +44,8 @@ public class DslClass {
 	}
 	
 	public void ClicarJS(By by) {
-		js.executeScript("arguments[0].click();", by);
+		WebElement element = driver.findElement(by);
+		js.executeScript("arguments[0].click();", element);
 	}
-	
 
-        
-//        WebElement el = wait.until((driver) -> {
-//            return drv.FindElement(locator);
-//        });
-
-           // js.ExecuteScript("arguments[0].click()", el);
 }

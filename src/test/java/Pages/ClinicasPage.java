@@ -40,8 +40,7 @@ public class ClinicasPage {
 		dsl.Clicar(By.id("dom"));
 		dsl.Clicar(By.xpath("//div[@class='modal-footer']//button[text()='Cadastrar']"));
 		Thread.sleep(600);
-		dsl.Clicar(By.id("root"));
-		dsl.Clicar(By.xpath("//button[@type='submit']"));
+		dsl.ClicarJS(By.xpath("//button[@type='submit']"));
 		Assert.assertEquals("Clínica digital cadastrada com sucesso", dsl.Assert(By.id("swal2-title")));
 		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
 		if(element.equals("Cliente cadastrado com sucesso!")) {

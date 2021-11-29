@@ -6,13 +6,14 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.AgentesPage;
+import Pages.HipotesesPage;
 import Pages.LoginPage;
 
-public class AgentesPenitenciarios {
+public class HipótesesDiagnósticas {
+
 	private WebDriver driver;
 	private LoginPage loginpage;
-	private AgentesPage agentespage;
+	private HipotesesPage hipotesespage;
 	
 	@Before
 	public void Inicializar() throws InterruptedException {
@@ -22,21 +23,21 @@ public class AgentesPenitenciarios {
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		agentespage = new AgentesPage(driver);
-	}
-	@Test
-	public void PreencherFormularioAgentes() throws InterruptedException {
-		agentespage.PreencherFormularioAgentesComDadosValidos();
+		hipotesespage = new HipotesesPage(driver);
 	}
 	
 	@Test
-	public void ValidarCamposObrigatoriosAgentes() throws InterruptedException {
-		agentespage.ValidarCamposAgentes();
+	public void PreencherFormularioHipotesesComDadosValidos() throws InterruptedException {
+		hipotesespage.PreencherCamposHipotesesComDadosValidos();
+	}
+	
+	@Test 
+	public void ValidarCamposObrigatorios() {
+		hipotesespage.ValidarCamposObrigatorios();
 	}
 	
 	@After
 	public void Ending() {
 		driver.quit();
 	}
-	
 }

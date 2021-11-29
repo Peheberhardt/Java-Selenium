@@ -6,37 +6,38 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Pages.AgentesPage;
 import Pages.LoginPage;
+import Pages.OcorrenciasPage;
 
-public class AgentesPenitenciarios {
+public class Ocorrencias {
+
 	private WebDriver driver;
 	private LoginPage loginpage;
-	private AgentesPage agentespage;
+	private OcorrenciasPage ocorrenciaspage;
 	
 	@Before
-	public void Inicializar() throws InterruptedException {
+	public void Inicializar() throws InterruptedException{
 		System.setProperty("webdriver.chrome.driver", "C:\\autodrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		loginpage.LogarComDadosVálidos();
-		agentespage = new AgentesPage(driver);
-	}
-	@Test
-	public void PreencherFormularioAgentes() throws InterruptedException {
-		agentespage.PreencherFormularioAgentesComDadosValidos();
+		ocorrenciaspage = new OcorrenciasPage(driver);
 	}
 	
 	@Test
-	public void ValidarCamposObrigatoriosAgentes() throws InterruptedException {
-		agentespage.ValidarCamposAgentes();
+	public void PreencherFormularioOcorrenciasComDadosValidos() throws InterruptedException {
+		ocorrenciaspage.PreencherFormularioOcorrenciasComDadosValidos();
+	}
+	
+	@Test
+	public void ValidarCamposObrigatorios() {
+		ocorrenciaspage.ValidarCamposObrigatorios();
 	}
 	
 	@After
 	public void Ending() {
 		driver.quit();
 	}
-	
 }
