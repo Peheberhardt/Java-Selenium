@@ -33,12 +33,12 @@ public class TecEnfermagemPages {
 		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(300);
 		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//div[text()='Selecione um Parceiro']"));
 		Thread.sleep(300);
 		dsl.Clicar(By.xpath("//*[text()='parceironormal']"));
 		dsl.Preencher(By.id("email"), uteis.gerarEmail());
 		dsl.Preencher(By.id("senha"), "teste123");
-		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Técnico de Enfermagem cadastrado com sucesso", dsl.Assert(By.id("swal2-title")));
 		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
@@ -94,12 +94,12 @@ public class TecEnfermagemPages {
 		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
 		dsl.Preencher(By.id("rg"), "123456789");
 		dsl.Preencher(By.id("nome"), nome);
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//div[text()='Selecione um Parceiro']"));
 		Thread.sleep(300);
 		dsl.Clicar(By.xpath("//*[text()='parceironormal']"));
 		dsl.Preencher(By.id("email"), uteis.gerarEmail());
 		dsl.Preencher(By.id("senha"), "teste123");
-		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//div[@class = 'form-row']"));
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));

@@ -26,6 +26,7 @@ public class Operadores {
 		operadorespage = new OperadoresPage(driver);
 	}
 	
+	
 	@Test
 	public void PreencherFormularioOperadoresComDadosValidos() throws InterruptedException {
 		operadorespage.PreencherFormularioOperadoresComDadosValidos();

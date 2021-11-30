@@ -87,10 +87,9 @@ public class OperadoresPage {
 		driver.navigate().refresh();
 		dsl.Preencher(By.id("nome_completo"), nome);
 		dsl.Preencher(By.id("cpf"), uteis.gerarCPF());
-		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Preencher(By.id("celular"), uteis.gerarCelular());
 		dsl.Preencher(By.id("telefone"), uteis.gerarTelefone());
-		dsl.Clicar(By.xpath("//div[@class = 'css-2oti52 select__multi-value__remove']"));
+		dsl.Preencher(By.id("dataNasc"), "10/05/1999");
 		dsl.Clicar(By.xpath("//div[text()='Selecione o sexo']"));
 		Thread.sleep(1000);
 		dsl.Clicar(By.xpath("//*[text()='Masculino']"));
