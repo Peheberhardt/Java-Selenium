@@ -59,6 +59,7 @@ public class ClientesPage {
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
 		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
 		dsl.Clicar(By.xpath("//button[text()='OK']"));
+		Thread.sleep(1000);
 		Assert.assertEquals("O campo nome deve ter pelo menos 10 caracteres",dsl.Assert(By.xpath("//div[text()='O campo nome deve ter pelo menos 10 caracteres']")));
 		Assert.assertEquals("O CPF digitado é inválido",dsl.Assert(By.xpath("//div[text()='O CPF digitado é inválido']")));
 		Assert.assertEquals("Campo de Data de Nascimento é obrigatório",dsl.Assert(By.xpath("//div[text()='Campo de Data de Nascimento é obrigatório']")));

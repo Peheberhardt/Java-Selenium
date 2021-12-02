@@ -27,15 +27,44 @@ public class Perfis {
 		perfispage = new PerfisPage(driver);
 	}
 	
-	@Ignore
 	@Test
 	public void CriarNovoPerfil() throws InterruptedException {
 		perfispage.CriarNovoPerfil();
 	}
 	
 	@Test
+	public void ValidarCamposObrigatorios() {
+		perfispage.ValidarCamposObrigatorios();
+	}
+	
+	@Test
 	public void ValidarPerfilUsuarioADM() throws InterruptedException {
 		perfispage.ValidarPerfilUsuarioADM();
+	}
+	
+	@Test
+	public void ValidarPerfilUsuarioMedico() throws InterruptedException {
+		perfispage.ValidarPerfilUsuarioMedico();
+	}
+	
+	@Test
+	public void ValidarPerfilUsuarioEnfermeiro() throws InterruptedException {
+		perfispage.ValidarPerfilUsuarioEnfermeiro();
+	}
+	
+	@Test
+	public void ValidarPerfilUsuarioOperador() throws InterruptedException {
+		perfispage.ValidarPerfilUsuarioOperador();
+	}
+	
+	@Test
+	public void ValidarPerfilUsuarioTecnicoEnfermagem() throws InterruptedException {
+		perfispage.ValidarPerfilUsuarioTecnicoEnfermagem();
+	}
+	
+	@Test
+	public void ValidarPerfilUsuarioAgentePenitenciario() throws InterruptedException {
+		perfispage.ValidarPerfilUsuarioAgentePenitenciario();
 	}
 	
 	

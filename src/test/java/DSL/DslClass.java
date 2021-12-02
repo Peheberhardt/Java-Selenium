@@ -16,7 +16,7 @@ public class DslClass {
 	public DslClass(WebDriver driver) {
 		super();
 		this.driver = driver;
-		this.wait = new WebDriverWait(this.driver, 30);
+		this.wait = new WebDriverWait(this.driver, 15);
 		this.js = (JavascriptExecutor)this.driver;
 	}
 	

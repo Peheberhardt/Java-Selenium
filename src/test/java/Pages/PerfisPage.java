@@ -3,20 +3,32 @@ package Pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import Codigos.CodigosUteis;
 import DSL.DslClass;
 
 public class PerfisPage {
+	
 	private DslClass dsl;
 	private CodigosUteis uteis;
 	private AdmPage admpage;
+	private MedicosPage medicospage;
+	private EnfermeirosPage enfermeirospages;
+	private OperadoresPage operadorespage;
+	private TecEnfermagemPages tecnicoenfermagempage;
+	private AgentesPage agentespage;
 	
 	public PerfisPage(WebDriver driver) {
 		super();
 		dsl = new DslClass(driver);
 		uteis = new CodigosUteis();
 		admpage = new AdmPage (driver);
+		medicospage = new MedicosPage(driver);
+		enfermeirospages = new EnfermeirosPage(driver);
+		operadorespage = new OperadoresPage(driver);
+		tecnicoenfermagempage = new TecEnfermagemPages(driver);
+		agentespage = new AgentesPage(driver);
 	}
 	
 	public void CriarNovoPerfil() throws InterruptedException {
@@ -41,6 +53,8 @@ public class PerfisPage {
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
+		dsl.Clicar(By.xpath("//button[text()='Salvar']"));
+		Assert.assertEquals("O Campo título deve ter pelo menos 5 caracteres", dsl.Assert(By.xpath("//div[text()='O Campo título deve ter pelo menos 5 caracteres']")));
 	}
 	
 	public void ValidarPerfilUsuarioADM() throws InterruptedException {
@@ -53,11 +67,127 @@ public class PerfisPage {
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
-		Thread.sleep(2000);
-		dsl.Clicar(By.xpath("//*[text()='Médico']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Administrador']"));
 		dsl.Preencher(By.id("cpf"), cpf);
 		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
 		Thread.sleep(1000);
-		Assert.assertEquals(dsl.Assert(By.xpath("//div//h4")), nome);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
+	}
+	
+	public void ValidarPerfilUsuarioMedico() throws InterruptedException {
+		medicospage.PreencherFormularioMedicoComDadosValidos();
+		dsl.Clicar(By.xpath("//a[text()='Médicos']"));
+		dsl.Preencher(By.id("input-pesquisa"), "Teste");
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("(//tr//td//i)[2]"));
+		Thread.sleep(1000);
+		WebElement element = dsl.WaitForElement(By.id("nome"));
+		String nome = element.getAttribute("value");
+		System.out.println(nome);
+		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
+		String cpf = element1.getAttribute("value");
+		System.out.println(cpf);
+		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
+		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
+		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Médico']"));
+		dsl.Preencher(By.id("cpf"), cpf);
+		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
+		Thread.sleep(1000);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
+	}
+	
+	public void ValidarPerfilUsuarioEnfermeiro() throws InterruptedException {
+		enfermeirospages.PreencherFormularioEnfermeirosComDadosValidos();
+		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Enfermeiros']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("(//tr//td//i)[2]"));
+		Thread.sleep(1000);
+		WebElement element = dsl.WaitForElement(By.id("nome"));
+		String nome = element.getAttribute("value");
+		System.out.println(nome);
+		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
+		String cpf = element1.getAttribute("value");
+		System.out.println(cpf);
+		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
+		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
+		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Enfermeiro']"));
+		dsl.Preencher(By.id("cpf"), cpf);
+		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
+		Thread.sleep(1000);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
+	}
+	
+	public void ValidarPerfilUsuarioOperador() throws InterruptedException {
+		operadorespage.PreencherFormularioOperadoresComDadosValidos();
+		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Operadores']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("(//tr//td//i)[1]"));
+		Thread.sleep(1000);
+		WebElement element = dsl.WaitForElement(By.id("nome_completo"));
+		String nome = element.getAttribute("value");
+		System.out.println(nome);
+		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
+		String cpf = element1.getAttribute("value");
+		System.out.println(cpf);
+		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
+		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
+		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Operador']"));
+		dsl.Preencher(By.id("cpf"), cpf);
+		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
+		Thread.sleep(1000);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
+	}
+	
+	public void ValidarPerfilUsuarioTecnicoEnfermagem() throws InterruptedException {
+		tecnicoenfermagempage.PreencherFormularioTecEnfermagemComDadaosValidos();
+		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Técnicos em Enfermagem']"));
+		dsl.Clicar(By.xpath("(//tr//td//i)[1]"));
+		WebElement element = dsl.WaitForElement(By.id("nome"));
+		String nome = element.getAttribute("value");
+		System.out.println(nome);
+		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
+		String cpf = element1.getAttribute("value");
+		System.out.println(cpf);
+		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
+		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
+		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Técnico de enfermagem']"));
+		dsl.Preencher(By.id("cpf"), cpf);
+		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
+		Thread.sleep(1000);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
+	}
+	
+	public void ValidarPerfilUsuarioAgentePenitenciario() throws InterruptedException {
+		agentespage.PreencherFormularioAgentesComDadosValidos();
+		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
+		dsl.Clicar(By.xpath("//a[text()='Agentes penitenciários']"));
+		dsl.Clicar(By.xpath("(//tr//td//i)[1]"));
+		WebElement element = dsl.WaitForElement(By.id("nome"));
+		String nome = element.getAttribute("value");
+		System.out.println(nome);
+		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
+		String cpf = element1.getAttribute("value");
+		System.out.println(cpf);
+		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
+		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
+		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
+		Thread.sleep(1000);
+		dsl.Clicar(By.xpath("//div[@class = 'css-1pcexqc-container basic-select dark-theme']//div[text()='Agente penitenciário']"));
+		dsl.Preencher(By.id("cpf"), cpf);
+		dsl.Clicar(By.xpath("//button[text()='Pesquisar']"));
+		Thread.sleep(1000);
+		Assert.assertEquals(nome,dsl.Assert(By.xpath("//div//h4")));
 	}
 }

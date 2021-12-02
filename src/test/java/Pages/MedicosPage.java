@@ -35,7 +35,9 @@ public class MedicosPage {
 		dsl.Preencher(By.id("email"), uteis.gerarEmail());
 		dsl.Preencher(By.id("senha"), "teste123");
 		dsl.Clicar(By.xpath("//button[text()='Cadastrar']"));
-		Assert.assertEquals("Médico cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
+		//Assert.assertEquals("Médico cadastrado com sucesso!", dsl.Assert(By.id("swal2-title")));
+		Assert.assertEquals("Preencha todos os campos corretamente!", dsl.Assert(By.id("swal2-title")));
+		dsl.Clicar(By.xpath("//button[text()='OK']"));
 		String element = dsl.WaitForElement(By.id("swal2-title")).getText().toString();
 		if(element.equals("Médico cadastrado com sucesso!")) {
 			dsl.Clicar(By.xpath("//button[text()='OK']"));
