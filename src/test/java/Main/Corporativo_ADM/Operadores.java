@@ -22,18 +22,19 @@ public class Operadores {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		operadorespage = new OperadoresPage(driver);
 	}
 	
 	
 	@Test
 	public void PreencherFormularioOperadoresComDadosValidos() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		operadorespage.PreencherFormularioOperadoresComDadosValidos();
 	}
 	
 	@Test
 	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		operadorespage.ValidarCamposObrigatorios();
 	}
 	

@@ -22,17 +22,18 @@ public class Especialidades {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		especialidadespage = new EspecialidadesPage(driver);
 	}
 	
 	@Test
 	public void PreencherFormularioEspecialidadesComDadosValidos() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		especialidadespage.PreencherFormularioEspecialidadesComDadosValidos();
 	}
 	
 	@Test
-	public void ValidarCamposObrigatorios() {
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		especialidadespage.ValidarCamposObrigatorios();
 	}
 	

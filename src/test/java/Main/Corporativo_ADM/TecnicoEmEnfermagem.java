@@ -2,7 +2,6 @@ package Main.Corporativo_ADM;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,17 +22,18 @@ public class TecnicoEmEnfermagem {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		tecenfermagem = new TecEnfermagemPages(driver);
 	}
-	@Ignore
+	
 	@Test
 	public void PreencherFormularioTecEnfermagemComDadaosValidos() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		tecenfermagem.PreencherFormularioTecEnfermagemComDadaosValidos();
 	}
 	
 	@Test
 	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		tecenfermagem.ValidarCamposObrigatorios();
 	}
 	

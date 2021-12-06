@@ -22,17 +22,18 @@ public class ClinicasDigitais {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		clinicaspage = new ClinicasPage(driver);
 	}
 	
 	@Test
 	public void CadastrarClinicaDigital() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		clinicaspage.CadastrarClinicaDigital();
 	}
 
 	@Test
 	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		clinicaspage.ValidarCamposObrigatorios();
 	}
 	

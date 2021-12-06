@@ -22,17 +22,18 @@ public class HipótesesDiagnósticas {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		hipotesespage = new HipotesesPage(driver);
 	}
 	
 	@Test
 	public void PreencherFormularioHipotesesComDadosValidos() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		hipotesespage.PreencherCamposHipotesesComDadosValidos();
 	}
 	
-	@Test 
-	public void ValidarCamposObrigatorios() {
+	@Test
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		hipotesespage.ValidarCamposObrigatorios();
 	}
 	

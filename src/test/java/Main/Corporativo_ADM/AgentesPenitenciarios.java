@@ -22,17 +22,18 @@ public class AgentesPenitenciarios {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		agentespage = new AgentesPage(driver);
 	}
 
 	@Test
 	public void PreencherFormularioAgentes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		agentespage.PreencherFormularioAgentesComDadosValidos();
 	}
 
 	@Test
 	public void ValidarCamposObrigatoriosAgentes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		agentespage.ValidarCamposAgentes();
 	}
 	

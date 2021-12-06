@@ -58,7 +58,6 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioADM() throws InterruptedException {
-		admpage.PreencherFormularioADMComDadosValidos();
 		dsl.Clicar(By.xpath("//a[text()='Administradores']"));
 		dsl.Preencher(By.id("input-pesquisa"), "Teste");
 		Thread.sleep(1000);
@@ -76,7 +75,6 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioMedico() throws InterruptedException {
-		medicospage.PreencherFormularioMedicoComDadosValidos();
 		dsl.Clicar(By.xpath("//a[text()='Médicos']"));
 		dsl.Preencher(By.id("input-pesquisa"), "Teste");
 		Thread.sleep(1000);
@@ -84,10 +82,8 @@ public class PerfisPage {
 		Thread.sleep(1000);
 		WebElement element = dsl.WaitForElement(By.id("nome"));
 		String nome = element.getAttribute("value");
-		System.out.println(nome);
 		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
 		String cpf = element1.getAttribute("value");
-		System.out.println(cpf);
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
@@ -100,7 +96,6 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioEnfermeiro() throws InterruptedException {
-		enfermeirospages.PreencherFormularioEnfermeirosComDadosValidos();
 		dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Enfermeiros']"));
 		Thread.sleep(1000);
@@ -108,10 +103,8 @@ public class PerfisPage {
 		Thread.sleep(1000);
 		WebElement element = dsl.WaitForElement(By.id("nome"));
 		String nome = element.getAttribute("value");
-		System.out.println(nome);
 		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
 		String cpf = element1.getAttribute("value");
-		System.out.println(cpf);
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
@@ -124,7 +117,6 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioOperador() throws InterruptedException {
-		operadorespage.PreencherFormularioOperadoresComDadosValidos();
 		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Operadores']"));
 		Thread.sleep(1000);
@@ -132,10 +124,8 @@ public class PerfisPage {
 		Thread.sleep(1000);
 		WebElement element = dsl.WaitForElement(By.id("nome_completo"));
 		String nome = element.getAttribute("value");
-		System.out.println(nome);
 		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
 		String cpf = element1.getAttribute("value");
-		System.out.println(cpf);
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
@@ -148,16 +138,13 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioTecnicoEnfermagem() throws InterruptedException {
-		tecnicoenfermagempage.PreencherFormularioTecEnfermagemComDadaosValidos();
 		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Técnicos em Enfermagem']"));
 		dsl.Clicar(By.xpath("(//tr//td//i)[1]"));
 		WebElement element = dsl.WaitForElement(By.id("nome"));
 		String nome = element.getAttribute("value");
-		System.out.println(nome);
 		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
 		String cpf = element1.getAttribute("value");
-		System.out.println(cpf);
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));
@@ -170,16 +157,13 @@ public class PerfisPage {
 	}
 	
 	public void ValidarPerfilUsuarioAgentePenitenciario() throws InterruptedException {
-		agentespage.PreencherFormularioAgentesComDadosValidos();
 		//dsl.Clicar(By.xpath("//span[text()='Cadastros']"));
 		dsl.Clicar(By.xpath("//a[text()='Agentes penitenciários']"));
 		dsl.Clicar(By.xpath("(//tr//td//i)[1]"));
 		WebElement element = dsl.WaitForElement(By.id("nome"));
 		String nome = element.getAttribute("value");
-		System.out.println(nome);
 		WebElement element1 = dsl.WaitForElement(By.id("cpf"));
 		String cpf = element1.getAttribute("value");
-		System.out.println(cpf);
 		dsl.Clicar(By.xpath("//a[text()='Perfis']"));
 		dsl.Clicar(By.xpath("//a[text()='Usuário']"));
 		dsl.Clicar(By.xpath("//div[text()='Selecione o tipo de usuário']"));

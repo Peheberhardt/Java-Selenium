@@ -23,15 +23,17 @@ public class Administradores {
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
 		admpage = new AdmPage(driver);
-		loginpage.LogarComDadosVálidos();
 	}
+
 	@Test
 	public void PreencherFormularioADM() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		admpage.PreencherFormularioADMComDadosValidos();
 	}
 	
 	@Test
 	public void ValidarCamposObrigatoriosADM() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		admpage.ValidarCamposADM();
 	}
 

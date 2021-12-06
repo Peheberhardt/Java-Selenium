@@ -22,17 +22,18 @@ public class Turnos {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		turnospage = new TurnosPage(driver);
 	}
 	
 	@Test
 	public void PreencherFormularioTurnosComDadosValidos() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		turnospage.PreencherFormularioTurnosComDadosValidos();
 	}
 	
 	@Test
-	public void ValidarCamposObrigatorios() {
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		turnospage.ValidarCamposObrigatorios();
 	}
 	

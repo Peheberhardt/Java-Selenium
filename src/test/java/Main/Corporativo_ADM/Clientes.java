@@ -22,17 +22,18 @@ public class Clientes {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		clientespage = new ClientesPage(driver);
 	}
 	
 	@Test
 	public void PreencherFormularioClientes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		clientespage.PreencherFormularioClienteComDadosValidos();
 	}
 	
 	@Test
 	public void ValidarCamposObrigatoriosClientes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		clientespage.ValidarCamposObrigatorios();
 	}
 	

@@ -21,17 +21,18 @@ public class PrescricoesMedicas {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		prescricoespage = new PrescricoesPage(driver);
 	}
 	
 	@Test
 	public void CriarNovaPrescricao() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		prescricoespage.CriarNovaPrescricao(); 
 	}
 	
 	@Test
-	public void ValidarCamposObrigatorios() {
+	public void ValidarCamposObrigatorios() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		prescricoespage.ValidarCamposObrigatorios();
 	}
 	

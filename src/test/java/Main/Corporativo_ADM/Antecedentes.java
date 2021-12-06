@@ -22,17 +22,18 @@ public class Antecedentes {
 		driver.get("https://corporativosrcolamedtest.web.app/login");
 		driver.manage().window().maximize();
 		loginpage = new LoginPage(driver);
-		loginpage.LogarComDadosVálidos();
 		antecedentespage = new AntecedentesPage(driver);
 	}
 	
 	@Test
 	public void PreencherFormularioAntecedentes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		antecedentespage.PreencherFormularioAntecedentes();
 	}
 	
 	@Test 
-	public void ValidarCamposAntecedentes() {
+	public void ValidarCamposAntecedentes() throws InterruptedException {
+		loginpage.LogarComDadosVálidos();
 		antecedentespage.ValidarCamposAntecedentes();
 	}
 	@After
